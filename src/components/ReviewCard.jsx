@@ -23,7 +23,15 @@ const ReviewCard = ({ content, name, imgSrc, company }) => {
         ))}
       </div>
 
-      <p className="text-zinc-400 mb-8">{content}</p>
+      {/* <p className="text-zinc-400 mb-8">{content}</p> */}
+      {content.split("&nbsp;").map((paragraph, index) => (
+        <p
+          key={index}
+          className="text-sm lg:text-sm text-zinc-400 mb-8 leading-5 md:leading-normal"
+        >
+          {paragraph.trim()}
+        </p>
+      ))}
 
       <div className="flex items-center gap-2 mt-auto">
         <figure className="img-box rounded-lg w-12 h-12">

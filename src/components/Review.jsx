@@ -25,21 +25,20 @@ const reviews = [
   },
   {
     content:
-      "Outstanding developer! Built a robust site with perfect functionality. Efficient and detail-oriented.",
+      "Over the past six months, Hridyansh has consistently demonstrated exceptional dedication, skill, and professionalism in his work. His attention to detail, problem-solving abilities, and commitment to delivering high-quality results have been invaluable to our development team.&nbsp; Hridyansh is not only technically proficient but also a great team player, always ready to collaborate and contribute innovative ideas. His ability to adapt to challenges and find effective solutions has significantly improved our workflow and project outcomes.&nbsp; We truly appreciate his hard work and dedication, and we look forward to seeing him continue to grow and excel within the team. Keep up the great work, Hridyansh!",
     name: "Antonio Urrea",
     imgSrc: "/images/TAES_person.jpg",
     company: "Ttriumph Adventure Experience Spain",
   },
   {
     content:
-      "Creative and skilled! Produced a modern, user-friendly site that exceeded expectations. Great communication.",
+      "I am extremely pleased with the work that Hridyansh did on developing my website. His technical expertise, combined with a clear understanding of my vision, resulted in a site that is both highly functional and visually appealing.&nbsp; Throughout the project, he maintained excellent communication, ensuring that every detail met my expectations. The coding is clean, efficient, and carries a thoughtful, human touch that enhances the user experience.&nbsp; The project was completed on time and within budget, and I am confident the website will serve my needs for years to come. I highly recommend Hridyansh for anyone seeking a skilled and reliable web developer.",
     name: "Siddharth Gautam",
     imgSrc: "/images/BrightCanvas_person.jpg",
     company: "Bright Canvas",
   },
   {
-    content:
-      "Professional work! Delivered on time, with a polished design and smooth user experience. Top-notch developer.",
+    content: "'Very nice'",
     name: "Siddharth Pratap Singh",
     imgSrc: "/images/SPS_person.jpg",
     company: "SPS Architects",
