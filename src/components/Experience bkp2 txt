@@ -10,7 +10,6 @@ const Experience = () => {
   const pathRef = useRef(null);
   const solidLineRef = useRef(null);
   const waypointsRef = useRef([]);
-  const triggeredDots = useRef(new Set());
 
   useEffect(() => {
     const path = pathRef.current;
@@ -23,14 +22,12 @@ const Experience = () => {
     const pathLength = path.getTotalLength();
     gsap.set(plane, { opacity: 1 });
 
-    // Animate plane along path
     gsap.to(plane, {
       scrollTrigger: {
         trigger: path,
         start: "top 80%",
         end: "bottom 30%",
         scrub: 1,
-        onUpdate: () => checkOverlap(), // Important
       },
       motionPath: {
         path: path,
@@ -40,7 +37,6 @@ const Experience = () => {
       },
     });
 
-    // Animate line drawing
     gsap.fromTo(
       solidLine,
       { strokeDasharray: pathLength, strokeDashoffset: pathLength },
@@ -55,33 +51,18 @@ const Experience = () => {
       }
     );
 
-    // Check overlap dynamically
-    function checkOverlap() {
-      const planeRect = plane.getBoundingClientRect();
-
-      waypoints.forEach((circle, index) => {
-        if (!circle || triggeredDots.current.has(index)) return;
-
-        const circleRect = circle.getBoundingClientRect();
-        const dx =
-          planeRect.left +
-          planeRect.width / 2 -
-          (circleRect.left + circleRect.width / 2);
-        const dy =
-          planeRect.top +
-          planeRect.height / 2 -
-          (circleRect.top + circleRect.height / 2);
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 40) {
-          triggeredDots.current.add(index); // Avoid retriggering
-          glowEffect(circle);
-        }
+    waypoints.forEach((circle, index) => {
+      if (!circle) return;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: path,
+          start: `${10 + index * 20}% center`,
+          end: `${15 + index * 20}% center`,
+          scrub: true,
+          markers: true,
+        },
       });
-    }
 
-    function glowEffect(circle) {
-      const tl = gsap.timeline();
       tl.to(circle, {
         scale: 1.5,
         backgroundColor: "#ffffff",
@@ -94,26 +75,31 @@ const Experience = () => {
         yoyo: true,
         duration: 0.3,
       });
-    }
-  }, []);
+    });
+  }, [pathRef, solidLineRef, planeRef, waypointsRef]);
 
   return (
     <section
-      className="hidden md:hidden relative section lg:flex flex-col items-center justify-center"
+      // className="relative flex flex-col items-center justify-center py-20 bg-gray-900 text-white "
+      className="hidden md:hidden relative section lg:flex flex-col items-center justify-center "
       id="experience"
     >
-      <div className="container flex flex-col justify-center items-center">
+      <div className="container flex flex-col justify-center items-center ">
+        {/* <h2 className="text-4xl font-bold mb-10">Work Experience</h2> */}
         <div className="w-full">
-          <h2 className="headline-2">Work experience timeline</h2>
-          <p className="text-zonc-400 mt-3 mb-8 max-w-[50ch]">
+          <h2 className="headline-2 ">Work experience timeline</h2>
+          <p className="text-zonc-400 mt-3 mb-8 max-w-[50ch] ">
             A quick recap of my professional journey
           </p>
         </div>
 
-        <div className="relative w-full max-w-4xl h-[900px]">
-          <svg className="py-20 absolute w-full h-full flex justify-center items-center">
+        <div className="relative w-full max-w-4xl h-[900px]  ">
+          {/* h-[650px] */}
+          {/* SVG Timeline Path */}
+          <svg className="py-20 absolute w-full h-full flex justify-center items-center ">
             <path
               ref={pathRef}
+              // maybe final one
               d="M 50 50 L 700 50 C 750 50 850 50 850 150 C 850 250 750 250 700 250 L 200 250 C 150 250 50 250 50 350 C 50 450 150 450 200 450 L 700 450 C 750 450 850 450 850 550 C 850 650 750 650 700 650 L 50 650 "
               stroke="gray"
               strokeWidth="4"
@@ -122,6 +108,7 @@ const Experience = () => {
             />
             <path
               ref={solidLineRef}
+              // Maybe final one
               d="M 50 50 L 700 50 C 750 50 850 50 850 150 C 850 250 750 250 700 250 L 200 250 C 150 250 50 250 50 350 C 50 450 150 450 200 450 L 700 450 C 750 450 850 450 850 550 C 850 650 750 650 700 650 L 50 650"
               stroke="#38bdf8"
               strokeWidth="4"
@@ -139,23 +126,7 @@ const Experience = () => {
             className="absolute w-12 opacity-0"
           />
 
-          {/* Waypoints */}
-          {[
-            { top: "7.7rem", left: "2.6rem" },
-            { top: "13.5rem", right: "2.4rem" },
-            { top: "26.5rem", left: "2.6rem" },
-            { bottom: "16.5rem", right: "2.4rem" },
-            { bottom: "10.1rem", left: "2.6rem" },
-          ].map((pos, index) => (
-            <div
-              key={index}
-              ref={(el) => (waypointsRef.current[index] = el)}
-              className={`absolute w-4 h-4 bg-gray-400 rounded-full waypoint`}
-              style={pos}
-            />
-          ))}
-
-          {/* Experience Entries */}
+          {/* Work Experience Entries */}
           <div className="text-left absolute top-10 left-12">
             <p className="text-lg font-semibold">Graduate Engineer Trainee</p>
             <p className="text-sm text-gray-400">Jakson Group pvt. Ltd.</p>
@@ -177,7 +148,7 @@ const Experience = () => {
           </div>
 
           <div className="text-right absolute bottom-60 right-20">
-            <p className="text-lg font-semibold">Web Development Intern</p>
+            <p className="text-lg font-semibold">Web Developement Intern</p>
             <p className="text-sm text-blue-400">EazyByts</p>
             <p className="text-sm">Jun 2024 - July 2024</p>
           </div>
@@ -189,6 +160,27 @@ const Experience = () => {
             </p>
             <p className="text-sm">September 2024 - Present</p>
           </div>
+
+          <div
+            ref={(el) => (waypointsRef.current[0] = el)}
+            className="absolute top-[7.7rem] left-[2.6rem] w-4 h-4 bg-gray-400 rounded-full waypoint"
+          />
+          <div
+            ref={(el) => (waypointsRef.current[1] = el)}
+            className="absolute top-[13.5rem] right-[2.4rem] w-4 h-4 bg-gray-400 rounded-full waypoint"
+          />
+          <div
+            ref={(el) => (waypointsRef.current[2] = el)}
+            className="absolute top-[26.5rem] left-[2.6rem] w-4 h-4 bg-gray-400 rounded-full waypoint"
+          />
+          <div
+            ref={(el) => (waypointsRef.current[3] = el)}
+            className="absolute bottom-[16.5rem] right-[2.4rem] w-4 h-4 bg-gray-400 rounded-full waypoint"
+          />
+          <div
+            ref={(el) => (waypointsRef.current[4] = el)}
+            className="absolute bottom-[10.1rem] left-[2.6rem] w-4 h-4 bg-gray-400 rounded-full waypoint"
+          />
         </div>
       </div>
     </section>
@@ -196,3 +188,14 @@ const Experience = () => {
 };
 
 export default Experience;
+
+{
+  /* <section className="section">
+    <div className="container">
+      <h2 className="headline-2 reveal-up">Work experience timeline</h2>
+      <p className="text-zonc-400 mt-3 mb-8 max-w-[50ch] reveal-up">
+        A quick recap of my professional journey
+      </p>
+    </div>
+  </section>; */
+}

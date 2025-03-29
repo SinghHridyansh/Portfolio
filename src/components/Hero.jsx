@@ -16,13 +16,15 @@ const Hero = () => {
                 className="img-cover"
               />
             </figure>
-            <div className="flex items-center gap-1.5 text-zinc-400 text-sm tracking-wide">
+            <div className="flex items-center gap-3 lg:gap-1.5 text-zinc-400 text-sm tracking-wide">
               <span className="relative w-2 h-2 rounded-full bg-emerald-400">
                 <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping"></span>
               </span>
               {/* Available for work */}
-              <span className="text-white">Full Stack Web Developer </span> @
-              Triumph Adventure Experience Spain
+              <div className="flex items-start lg:items-center flex-col lg:flex-row gap-0.5 lg:gap-1.5 text-zinc-400 text-sm tracking-wide">
+                <span className="text-white">Full Stack Web Developer </span>
+                @Triumph Adventure Experience Spain
+              </div>
             </div>
           </div>
 
