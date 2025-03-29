@@ -85,8 +85,7 @@ const Contact = () => {
           </h2>
 
           <p className="text-zinc-400 mt-3 mb-8 max-w-[50ch] lg:max-w-[30ch] reveal-up">
-            Reach out today to discuss your project needs and start
-            collaborating on something amazing!
+            Reach out today to discuss our next collaboration!
           </p>
 
           <div className="flex items-center gap-2 mt-auto">
