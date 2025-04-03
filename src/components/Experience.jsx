@@ -38,6 +38,7 @@ const Experience = () => {
         autoRotate: true,
         alignOrigin: [0.5, 0.5],
       },
+      transformOrigin: "50% 50%",
     });
 
     // Animate line drawing
