@@ -2,6 +2,6 @@
   width: 50px !important; /* Adjust as needed */
   height: 50px !important;
   transform-origin: center center;
-  border: 2px solid red; /* Debugging */
+  /* border: 2px solid red; */
   /* transform-origin: 50% 50%; */
 }
