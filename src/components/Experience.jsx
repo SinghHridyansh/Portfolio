@@ -39,7 +39,6 @@ const Experience = () => {
         autoRotate: true,
         alignOrigin: [0.5, 0.5],
       },
-      transformOrigin: "50% 50%",
     });
 
     // Animate line drawing
@@ -138,8 +137,19 @@ const Experience = () => {
             ref={planeRef}
             src="https://cdn-icons-png.flaticon.com/128/8213/8213522.png"
             alt="Plane"
-            className="absolute w-12 opacity-0"
+            className="arrow-img absolute  opacity-0"
           />
+
+          {/* <div
+            ref={planeRef}
+            style={{
+              width: "20px",
+              height: "20px",
+              backgroundColor: "red",
+              borderRadius: "50%",
+              position: "absolute",
+            }}
+          ></div> */}
 
           {/* Waypoints */}
           {[

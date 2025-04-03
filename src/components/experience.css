@@ -1,5 +1,7 @@
-img {
-  width: 50px; /* Adjust size as needed */
-  height: auto;
-  transform-origin: center;
+.arrow-img {
+  width: 50px !important; /* Adjust as needed */
+  height: 50px !important;
+  transform-origin: center center;
+  border: 2px solid red; /* Debugging */
+  /* transform-origin: 50% 50%; */
 }
